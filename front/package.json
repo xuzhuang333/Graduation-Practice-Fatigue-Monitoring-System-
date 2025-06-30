@@ -1,0 +1,35 @@
+{
+  "name": "fatigue-detection-system",
+  "version": "1.0.0",
+  "description": "疲劳检测系统",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron .",
+    "build": "electron-builder"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^25.0.0",
+    "electron-builder": "^24.9.1"
+  },
+  "dependencies": {
+  },
+  "build": {
+    "appId": "com.example.login-management-system",
+    "productName": "智能管理系统",
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "mac": {
+      "target": "dmg"
+    },
+    "linux": {
+      "target": "AppImage"
+    }
+  }
+}

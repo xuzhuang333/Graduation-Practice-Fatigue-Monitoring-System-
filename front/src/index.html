@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#4361ee" />
+  <title>疲劳检测系统</title>
+  <base href="./">
+  <link rel="stylesheet" href="styles.css" />
+  <!-- 添加Remix Icon图标库 -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+  <style>
+    #error-display {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(255, 0, 0, 0.8);
+      color: white;
+      padding: 10px;
+      font-family: monospace;
+      max-height: 30%;
+      overflow: auto;
+      z-index: 9999;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- 视图容器 -->
+  <main>
+    <!-- 登录视图容器 -->
+    <div id="view-login">
+      <!-- loginView.js 会动态创建登录界面内容 -->
+    </div>
+    
+    <!-- 注册视图容器 -->
+    <div id="view-register" style="display:none">
+      <!-- registerView.js 会动态创建注册界面内容 -->
+    </div>
+    
+    <!-- 主页视图容器 -->
+    <div id="view-home" style="display:none">
+      <!-- homeView.js 会动态创建主页界面内容 -->
+    </div>
+    
+    <!-- 用户信息视图容器 -->
+    <div id="view-user-info" style="display:none">
+      <!-- userInfoView.js 会动态创建用户信息界面内容 -->
+    </div>
+    
+    <!-- 修改密码视图容器 -->
+    <div id="view-change-password" style="display:none">
+      <!-- changePasswordView.js 会动态创建修改密码界面内容 -->
+    </div>
+    
+    <!-- 用户管理视图容器 -->
+    <div id="view-user-management" style="display:none">
+      <!-- userManagementView.js 会动态创建用户管理界面内容 -->
+    </div>
+    
+    <!-- 疲劳检测视图容器 -->
+    <div id="view-fatigue-detection" style="display:none">
+      <!-- fatigueDetectionView.js 会动态创建疲劳检测界面内容 -->
+    </div>
+    
+    <!-- 疲劳监测视图容器 -->
+    <div id="view-fatigue-monitor" style="display:none">
+      <!-- fatigueMonitorView.js 会动态创建疲劳监测界面内容 -->
+    </div>
+  </main>
+
+  <!-- 错误显示区域 -->
+  <div id="error-display"></div>
+
+  <!-- 主渲染进程脚本 -->
+  <script>
+    // 全局错误处理
+    window.addEventListener('error', function(event) {
+      const errorDisplay = document.getElementById('error-display');
+      errorDisplay.style.display = 'block';
+      errorDisplay.innerHTML += `<p>错误: ${event.message} (${event.filename}:${event.lineno})</p>`;
+      console.error('捕获到错误:', event);
+    });
+
+    // 加载模块脚本
+    const script = document.createElement('script');
+    script.type = 'module';
+    script.src = 'renderer.js';
+    script.onerror = function(error) {
+      const errorDisplay = document.getElementById('error-display');
+      errorDisplay.style.display = 'block';
+      errorDisplay.innerHTML += `<p>加载脚本失败: ${error}</p>`;
+      console.error('脚本加载失败:', error);
+    };
+    document.body.appendChild(script);
+  </script>
+</body>
+</html>
